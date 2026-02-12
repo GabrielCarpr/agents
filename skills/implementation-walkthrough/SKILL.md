@@ -157,25 +157,31 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction) 
 
 ### 4. Verification Performed
 
-Provide reproducible verification with expected output:
+Three parts, all required:
 
-```markdown
-**Commands run:**
-\`\`\`bash
-npm test                    # 78 tests, 0 failures
-npm run lint               # No errors
-\`\`\`
-
-**Manual verification:**
-\`\`\`bash
-curl -H "Authorization: Bearer $TOKEN" http://localhost:3000/api/protected
-# Expected: 200 OK, returns { "user": "..." }
-\`\`\`
+**Test cases written** (one line each):
+```
+- auth.test.ts: valid JWT returns 200 with req.user populated
+- auth.test.ts: missing Authorization header returns 401
+- auth.test.ts: expired/malformed token returns 401
+- routes.test.ts: public routes bypass middleware
 ```
 
-**Always include:**
-- The command to run
-- Expected output or result
+**Manual scenarios run** (one line each):
+```
+- Valid token → GET /users → 200 [{ id, email }]
+- No token → GET /users → 401 { error: "Missing token" }
+- Bad token → GET /users → 401 { error: "Invalid token" }
+- No token → GET /health → 200 (public route unaffected)
+```
+
+**Commands run** with expected output:
+```bash
+npm test          # 78 tests, 0 failures
+npm run lint      # No errors
+curl -H "Authorization: Bearer $TOKEN" http://localhost:3000/users
+# → 200 [{ "id": "...", "email": "..." }]
+```
 
 ### 5. Challenges Encountered
 
@@ -206,7 +212,7 @@ Explicitly call out what wasn't done:
 | Overview | What + why in 2-3 sentences |
 | System Delta Diagram | Single annotated ASCII diagram with `[+NEW]`/`[~MODIFIED]`/`[-REMOVED]` markers |
 | Key Changes | File:line refs + code snippets |
-| Verification | Runnable commands + expected output |
+| Verification | Test cases written + manual scenarios + commands with expected output |
 | Challenges | Decisions made + where to find code |
 | Not Completed | Explicit list of deferred/blocked items |
 
