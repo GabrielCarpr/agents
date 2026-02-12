@@ -39,6 +39,8 @@ Input (Spec)
     ↓
 [5] FIX LOOP (Fixer Agents) -> Repeat [4]
     ↓
+[6] IMPLEMENTATION WALKTHROUGH -> Summary for human collaborator
+    ↓
 Completion
 ```
 
@@ -84,6 +86,27 @@ Completion
     2.  Launch a `general` agent with the **Fixer Agent Template**.
     3.  **REPEAT PHASE 4.** Do not assume the fix worked. Verify it.
 
+## Phase 6: Implementation Walkthrough
+
+**Constraint:** Only after verification passes. This is the final deliverable to the human.
+
+**Action:** Using the `implementation-walkthrough` skill, produce a structured summary from your coordination context. You have everything needed:
+
+- What was built (Phase 2 plan + Phase 3 agent returns)
+- Verification performed (Phase 4 tester report)
+- Challenges encountered (issues surfaced in any phase)
+- What wasn't completed (deferred items from planning or blocked work)
+
+**Required sections:**
+
+1. **Overview** - What was implemented and why (2-3 sentences)
+2. **Key Changes** - File:line references + code snippets for each significant change
+3. **Verification Performed** - Exact commands run + results from Phase 4 tester
+4. **Challenges Encountered** - Technical decisions, tradeoffs, blockers
+5. **Not Completed** - Explicit list of deferred or blocked items (if any)
+
+**Core principle:** Show code, not descriptions. Provide commands, not claims of success.
+
 ---
 
 # Reference: Agent Prompt Templates
@@ -123,7 +146,11 @@ Implement Task: [Task Name]
 1. Write the code.
 2. Write the tests (Unit/Integration) for this specific task.
 3. **SELF-VERIFY:** Run the tests yourself. Do not return until tests pass.
-4. Return a summary of files changed.
+4. Return a structured summary using the `implementation-walkthrough` skill:
+   - Files changed with line ranges (e.g. `src/auth.ts:25-60`)
+   - Key code snippets (10-30 lines of the most important changes)
+   - Verification commands run + results
+   - Any challenges or decisions made
 ```
 
 ## Tester Agent Template (Manual Verification)
