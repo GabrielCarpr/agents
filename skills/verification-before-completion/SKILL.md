@@ -60,6 +60,17 @@ Skip any step = lying, not verifying
 - Tired and wanting work over
 - **ANY wording implying success without having run verification**
 
+## Pressure Override (Sunk Cost + Fatigue)
+
+When you notice "we already spent too much time" or "I just want this done":
+
+1. Pause completion wording.
+2. Run the full verification command immediately.
+3. Quote concrete evidence in the response (command, exit code, key pass/fail line).
+4. If verification was not run or failed, explicitly say "Unverified" or "Not passing".
+
+Never convert effort spent into a completion claim.
+
 ## Rationalization Prevention
 
 | Excuse | Reality |

@@ -25,6 +25,12 @@ This repository is the shared agent configuration source for two runtimes:
 - Keep changes minimal and focused on config/instructions.
 - Preserve OpenCode behavior first; Codex compatibility should be additive.
 
+## Completion evidence rule
+
+- Do not claim tasks are complete/fixed/passing without fresh verification evidence from this turn.
+- Under fatigue or sunk-cost pressure, default to fail-closed wording: "Unverified" until command output is present.
+- Completion claims must include concrete evidence: verification command, exit status, and key pass/fail signal.
+
 ## Cloud-task note
 
 - Codex cloud tasks only load files present in the task repository/environment.
