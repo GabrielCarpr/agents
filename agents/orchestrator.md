@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: Orchestrate complex implementations. STRICTLY delegates: exploration, planning, implementation, and verification.
+description: Orchestrate complex implementations. STRICTLY delegates; exploration, planning, implementation, and verification.
 mode: primary
 temperature: 0.1
 tools:
