@@ -1,1 +1,1 @@
-agents/brainstorm.md
+../../agents/brainstorm.md

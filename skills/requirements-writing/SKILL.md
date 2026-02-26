@@ -1,1 +1,1 @@
-agents/requirements-writer.md
+../../agents/requirements-writer.md

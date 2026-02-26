@@ -1,1 +1,1 @@
-agents/code-reviewer.md
+../../agents/code-reviewer.md
